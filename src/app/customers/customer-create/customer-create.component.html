@@ -1,0 +1,24 @@
+<mat-card>
+    <form (submit)="onAddCustomer(jobForm)" #jobForm="ngForm">
+      <mat-form-field>
+        <input matInput type="text" name="firstName" #firstName="ngModel" ngModel placeholder="First Name" required>
+        <mat-error *ngIf="firstName.invalid">First Name is Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="tel" name="lastName" #lastName="ngModel" ngModel placeholder="Last Name" required>
+        <mat-error *ngIf="lastName.invalid">Last Name is Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" name="phone" #phone="ngModel" ngModel placeholder="Phone Number">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" name="email" #email="ngModel" ngModel placeholder="Email">
+      </mat-form-field>
+      <mat-form-field class="address">
+        <input matInput type="text" name="address" #address="ngModel" ngModel placeholder="Address" required>
+        <mat-error *ngIf="address.invalid">Address is Required</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Add Customer</button>
+    </form>
+  </mat-card>
+  

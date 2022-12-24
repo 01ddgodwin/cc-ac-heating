@@ -1,0 +1,21 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion *ngIf="jobs.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let job of jobs">
+    <mat-expansion-panel-header>
+      {{ job.date | date:'shortDate' }} | {{ job.customer }}
+    </mat-expansion-panel-header>
+    <p>Date: {{ job.date | date:'shortDate' }}</p>
+    <p>Hours: {{ job.hours }}</p>
+    <p>Hourly Total: ${{ job.hours * 80 }}</p>
+    <p>Total Parts Cost: ${{ job.parts }}</p>
+    <p>Notes:</p>
+    <p>{{ job.notes }}</p>
+    <p>Total Cost: ${{ job.hours * 80 + job.parts }}</p>
+    <p>Job ID: {{ job.id }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', job.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(job.id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="infoText mat-body-1" *ngIf="jobs.length <= 0 && !isLoading">No Jobs Yet!</p>

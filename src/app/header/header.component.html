@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <nav class="headerNav">
+        <ul>
+            <li routerLink="/jobs" *ngIf="userIsAuthenticated">
+                <a routerLink="/jobs">JOBS</a>
+            </li>
+            <li routerLink="/customers" *ngIf="userIsAuthenticated">
+                <a routerLink="/customers">CUSTOMERS</a>
+            </li>
+            <li routerLink="/parts" *ngIf="userIsAuthenticated">
+                <a href="/parts">PARTS</a>
+            </li>
+            <li *ngIf="!userIsAuthenticated">
+                <a routerLink="/login" routerLinkActive="mat-accent">LOGIN</a>
+            </li>
+            <li *ngIf="userIsAuthenticated">
+                <button mat-button (click)="onLogout()">LOGOUT</button>
+            </li>
+        </ul>
+    </nav>
+</mat-toolbar>
