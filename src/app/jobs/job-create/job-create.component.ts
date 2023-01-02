@@ -5,7 +5,7 @@ import { JobsService } from '../jobs.service';
 import { Subscription } from 'rxjs';
 import { Customer } from 'src/app/customers/customers.model';
 import { CustomersService } from 'src/app/customers/customers.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-create',
@@ -15,27 +15,27 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class JobCreateComponent implements OnInit {
   enteredFirstName = "";
   enteredLastName = "";
-  private mode = 'create'
   private jobId;
   job!: Job;
+  mode = 'create'
 
   @Input() customers: Customer[] = [];
   private customersSub!: Subscription;
 
-  constructor(public jobsService: JobsService, public customersService: CustomersService, public route: ActivatedRoute) {}
+  constructor(public jobsService: JobsService, public customersService: CustomersService, public route: ActivatedRoute, public router: Router) {}
 
   ngOnInit(): void {
 
-    // this.route.paramMap.subscribe((paramMap: ParamMap) => {
-    //   if (paramMap.has('jobId')) {
-    //     this.mode = 'edit';
-    //     this.jobId = paramMap.get("jobId");
-    //     this.job = this.jobsService.getJob(this.jobId);
-    //   } else {
-    //     this.mode = 'create';
-    //     this.jobId = null;
-    //   }
-    // });
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('jobId')) {
+        this.mode = 'edit';
+        this.jobId = paramMap.get("jobId");
+        this.job = this.jobsService.getJob(this.jobId);
+      } else {
+        this.mode = 'create';
+        this.jobId = null;
+      }
+    });
 
     this.customersService.getCustomers();
     this.customersSub = this.customersService
@@ -46,19 +46,25 @@ export class JobCreateComponent implements OnInit {
 
   }
 
-  onAddJob(form: NgForm) {
+  onSaveJob(form: NgForm) {
     if (form.invalid) {
       return
     }
     const job: Job = {
-      id: form.value.id,
+      id: this.jobId,
       date: form.value.date,
       customer: form.value.customer,
       hours: form.value.hours,
       notes: form.value.notes,
       parts: form.value.parts
     };
-    this.jobsService.addJob(job)
+
+    if (this.mode === 'create') {
+      this.jobsService.addJob(job);
+    } else {
+      this.jobsService.updateJob(job);
+      this.router.navigate(['/jobs']);
+    }
     form.resetForm();
   }
 }

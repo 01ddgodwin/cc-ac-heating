@@ -6,8 +6,8 @@
       </mat-expansion-panel-header>
       <p>Part ID: {{ part.id }}</p>
       <mat-action-row>
-        <a mat-button color="primary" [routerLink]="['/edit', part.id]">EDIT</a>
-        <button mat-button color="warn" (click)="onDelete(part.id)">DELETE</button>
+        <a mat-button color="primary" [routerLink]="['/editPart', part.id]">EDIT</a>
+        <button mat-button color="warn" (click)="onDelete(part.id!)">DELETE</button>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>

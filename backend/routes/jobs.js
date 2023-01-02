@@ -22,6 +22,22 @@ router.post("", checkAuth, (req, res, next) => {
   });
 });
 
+// Update job
+router.put("/api/jobs/:id", (req, res, next) => {
+  const job = new Job({
+    _id: req.body.id,
+    date: req.body.date,
+    customer: req.body.customer,
+    hours: req.body.hours,
+    notes: req.body.notes,
+    parts: req.body.parts
+  })
+  Job.updateOne({_id: req.params.id}, job).then(result => {
+    console.log(result);
+    res.status(200).json({message: "Update successful!"});
+  })
+})
+
 // Get all jobs
 router.get("", (req, res, next) => {
   Job.find().then((documents) => {

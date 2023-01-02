@@ -28,7 +28,8 @@ import { PartListComponent } from './parts/part-list/part-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HomeComponent } from './home/home.component'
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete'
     PartListComponent,
     LoginComponent,
     SignupComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

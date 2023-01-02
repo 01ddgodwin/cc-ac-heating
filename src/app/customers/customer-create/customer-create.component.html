@@ -1,5 +1,5 @@
 <mat-card>
-    <form (submit)="onAddCustomer(jobForm)" #jobForm="ngForm">
+    <form (submit)="onSaveCustomer(customerForm)" #customerForm="ngForm">
       <mat-form-field>
         <input matInput type="text" name="firstName" #firstName="ngModel" ngModel placeholder="First Name" required>
         <mat-error *ngIf="firstName.invalid">First Name is Required</mat-error>
@@ -18,7 +18,8 @@
         <input matInput type="text" name="address" #address="ngModel" ngModel placeholder="Address" required>
         <mat-error *ngIf="address.invalid">Address is Required</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Add Customer</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="mode === 'create'">Add Customer</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="mode != 'create'">Update Customer</button>
     </form>
   </mat-card>
   

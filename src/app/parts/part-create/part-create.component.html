@@ -1,5 +1,5 @@
 <mat-card>
-    <form (submit)="onAddPart(partForm)" #partForm="ngForm">
+    <form (submit)="onSavePart(partForm)" #partForm="ngForm">
       <mat-form-field>
         <input matInput type="string" name="partName" #partName="ngModel" ngModel placeholder="Part" required>
         <mat-error *ngIf="partName.invalid">Part is Required</mat-error>
@@ -9,7 +9,8 @@
         <input matInput type="number" name="cost" #cost="ngModel" ngModel placeholder="Cost" required>
         <mat-error *ngIf="cost.invalid">Cost is Required</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Add Part</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="mode === 'create'">Add Part</button>
+      <button mat-raised-button color="primary" type="submit" *ngIf="mode != 'create'">Update Part</button>
     </form>
   </mat-card>
   

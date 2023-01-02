@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Customer } from '../customers.model';
 import { CustomersService } from '../customers.service';
 
@@ -9,25 +10,44 @@ import { CustomersService } from '../customers.service';
   styleUrls: ['./customer-create.component.scss']
 })
 export class CustomerCreateComponent implements OnInit {
+  mode = 'create';
+  private customerId;
+  customer!: Customer
 
-  constructor(public customerService: CustomersService) { }
+  constructor(public customerService: CustomersService, public route: ActivatedRoute, public router: Router) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('customerId')) {
+        this.mode = 'edit';
+        this.customerId = paramMap.get('customerId');
+        this.customer = this.customerService.getCustomer(this.customerId);
+      } else {
+        this.mode = 'create';
+        this.customerId = null
+      }
+    })
   }
 
-  onAddCustomer(form: NgForm) {
+  onSaveCustomer(form: NgForm) {
     if (form.invalid) {
       return
     }
     const customer: Customer = {
-      id: form.value.id,
+      id: this.customerId,
       firstName: form.value.firstName,
       lastName: form.value.lastName,
       phone: form.value.phone,
       email: form.value.email,
       address: form.value.address
     };
-    this.customerService.addCustomer(customer)
+
+    if (this.mode === 'create') {
+      this.customerService.addCustomer(customer)
+    } else {
+      this.customerService.updateCustomer(customer);
+      this.router.navigate(['/customers']);
+    }
     form.resetForm();
   }
 

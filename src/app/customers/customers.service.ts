@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Customer } from './customers.model';
+
+const BACKEND_URL = environment.apiURL + "/customers/";
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +18,9 @@ export class CustomersService {
 
   getCustomers() {
     this.http
-      .get<{ message: string; customers: any }>('http://localhost:3000/api/customers')
+      .get<{ message: string; customers: any }>(
+        BACKEND_URL
+      )
       .pipe(
         map((customerData) => {
           return customerData.customers.map((customer) => {
@@ -24,7 +30,7 @@ export class CustomersService {
               id: customer._id,
               phone: customer.phone,
               email: customer.email,
-              address: customer.address
+              address: customer.address,
             };
           });
         })
@@ -39,6 +45,10 @@ export class CustomersService {
     return this.customersUpdated.asObservable();
   }
 
+  getCustomer(id: string) {
+    return { ...this.customers.find((c) => c.id === id) };
+  }
+
   addCustomer(customers: Customer) {
     const customer: Customer = {
       id: customers.id,
@@ -46,11 +56,11 @@ export class CustomersService {
       lastName: customers.lastName,
       phone: customers.phone,
       email: customers.email,
-      address: customers.address
+      address: customers.address,
     };
     this.http
       .post<{ message: string; customerId: string }>(
-        'http://localhost:3000/api/customers',
+        BACKEND_URL,
         customer
       )
       .subscribe((responseData) => {
@@ -61,11 +71,35 @@ export class CustomersService {
       });
   }
 
+  updateCustomer(customers: Customer) {
+    const customer: Customer = {
+      id: customers.id,
+      firstName: customers.firstName,
+      lastName: customers.lastName,
+      phone: customers.phone,
+      email: customers.email,
+      address: customers.address
+    };
+    this.http
+      .put(BACKEND_URL + customers.id, customer)
+      .subscribe((response) => {
+        const updatedCustomers = [...this.customers];
+        const oldCustomerIndex = updatedCustomers.findIndex(
+          (c) => c.id === customer.id
+        );
+        updatedCustomers[oldCustomerIndex] = customer;
+        this.customers = updatedCustomers;
+        this.customersUpdated.next([...this.customers]);
+      });
+  }
+
   deleteCustomer(customerId: string) {
     this.http
-      .delete('http://localhost:3000/api/customers/' + customerId)
+      .delete(BACKEND_URL + customerId)
       .subscribe(() => {
-        const updatedCustomers = this.customers.filter((customer) => customer.id !== customerId);
+        const updatedCustomers = this.customers.filter(
+          (customer) => customer.id !== customerId
+        );
         this.customers = updatedCustomers;
         this.customersUpdated.next([...this.customers]);
       });

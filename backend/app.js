@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -13,7 +14,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://admin:fIBvkN1DVbjQwg9Y@ccacheating.pmwelpi.mongodb.net/"
+    "mongodb+srv://admin:" + process.env.MONGO_ATLAS_PW + "@ccacheating.pmwelpi.mongodb.net/"
   )
   .then(() => {
     console.log("Connected to database!");
@@ -23,6 +24,8 @@ mongoose
   });
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use("/", express.static(path.join(__dirname, "angular")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -32,13 +35,13 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
   );
   next();
 });
 
-app.use("/api/jobs", jobsRoutes)
-app.use("/api/user", userRoutes)
+app.use("/api/jobs", jobsRoutes);
+app.use("/api/user", userRoutes);
 
 
 ///////////////////////////////////////////////
@@ -69,6 +72,22 @@ app.post("/api/customers", (req, res, next) => {
     });
   });
 });
+
+// Update customer
+app.put("/api/customers/:id", (req, res, next) => {
+  const customer = new Customer({
+    _id: req.body.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    phone: req.body.phone,
+    email: req.body.email,
+    address: req.body.address
+  })
+  Customer.updateOne({_id: req.params.id}, customer).then(result => {
+    console.log(result);
+    res.status(200).json({message: "Update successful!"});
+  })
+})
 
 // Get all customers
 app.get("/api/customers", (req, res, next) => {
@@ -107,6 +126,19 @@ app.post("/api/parts", (req, res, next) => {
   });
 });
 
+// Update part
+app.put("/api/parts/:id", (req, res, next) => {
+  const part = new Part({
+    _id: req.body.id,
+    partName: req.body.partName,
+    cost: req.body.cost
+  })
+  Part.updateOne({_id: req.params.id}, part).then(result => {
+    console.log(result);
+    res.status(200).json({message: "Update successful!"});
+  })
+})
+
 // Get all parts
 app.get("/api/parts", (req, res, next) => {
   Part.find().then((documents) => {
@@ -125,5 +157,9 @@ app.delete("/api/parts/:id", (req, res, next) => {
     res.status(200).json({ message: "Part deleted!" });
   });
 });
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "angular", "index.html"))
+})
 
 module.exports = app;

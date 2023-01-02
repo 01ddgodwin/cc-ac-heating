@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  apiURL: "http://localhost:3000/api"
+  // apiURL: "http://ccacheating.s3-website-us-west-2.amazonaws.com/api"
 };
 
 /*
