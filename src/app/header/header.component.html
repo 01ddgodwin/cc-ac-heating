@@ -1,4 +1,13 @@
-<mat-toolbar color="primary">
+<nav *ngIf="router.url === '/'">
+    <ul>
+        <li class="homeNav">
+            <img src="../../assets/CC Logo.png" alt="CC AC and Heating logo">
+            <h1>CC AC and Heating</h1>
+        </li>
+    </ul>
+</nav>
+
+<mat-toolbar color="primary" *ngIf="router.url != '/'">
     <nav class="headerNav">
         <ul>
             <li routerLink="/jobs" *ngIf="userIsAuthenticated">
@@ -19,3 +28,4 @@
         </ul>
     </nav>
 </mat-toolbar>
+

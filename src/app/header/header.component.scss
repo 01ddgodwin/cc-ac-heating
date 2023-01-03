@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+nav:nth-child(1) {
+    background-color: white;
+
+    ul {
+        margin: 0;
+    }
+
+    li {
+        margin: 0;
+    }
+}
+
+.homeNav {
+    display: flex;
+    align-items: center;
+    height: 10em;
+    margin: 0 auto;
+
+    img {
+        width: 150px;
+    }
+
+    h1 {
+        margin-left: 1em;
+        margin-bottom: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 50px;
+    }
+}
+
 ul {
     list-style: none;
     display: flex;
@@ -32,5 +65,59 @@ mat-toolbar {
             }
         }
     }
+    
+}
+
+// Mobile
+@media (min-width: 320px) and (max-width: 480px) {
+    .homeNav {
+        display: flex;
+        align-items: center;
+        height: 6em;
+        margin: 0 auto;
+    
+        img {
+            width: 100px;
+        }
+    
+        h1 {
+            margin-left: 1em;
+            margin-bottom: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+}
+
+// Tablets
+@media (min-width: 481px) and (max-width: 768px) {
+    .homeNav {
+        display: flex;
+        // align-items: center;
+        height: 6em;
+        margin: 0 auto;
+    
+        img {
+            width: 100px;
+        }
+    
+        h1 {
+            margin-left: 1em;
+            margin-bottom: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+}
+
+// Small Screens
+@media (min-width: 769px) and (max-width: 1024px) {
+    
+}
+
+// Large Screens
+@media (min-width: 1025px) and (max-width: 1200px) {
     
 }

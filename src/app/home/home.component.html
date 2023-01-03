@@ -1,1 +1,42 @@
-<div class="backgroundImage"></div>
+<div class="heatCard">
+  <img src="../../assets/heater-heat-svgrepo-com.svg" alt="Image of a heater">
+  <h1>The Hottest Heat in the Area</h1>
+</div>
+
+<div class="aboutSection">
+    <div class="aboutText">
+      <h2>Who We Are</h2>
+      <p>Father and son duo based in Glasgow Montana servicing NorthEastern Montana. With years of experience, we are here
+        to give you the best HVAC service around.</p>
+    </div>
+    <div class="aboutImage">
+      <img src="../../assets/CC Logo (1).png" alt="">
+    </div>
+  </div>
+
+<div class="acCard">
+  <img src="../../assets/air-conditioner-svgrepo-com.svg" alt="Image of an AC unit">
+  <h1>Finest Air for Your Home</h1>
+</div>
+
+<mat-card class="contactCard">
+  <form #jobForm="ngForm">
+    <mat-card-header>
+      <mat-card-title class="cardTitle">Send Us A Message</mat-card-title>
+    </mat-card-header>
+    <mat-form-field>
+      <input matInput type="string" name="name" #name="ngModel" ngModel placeholder="Full Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="string" name="email" #email="ngModel" ngModel placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="string" name="phone" #phone="ngModel" ngModel placeholder="Phone #">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Message</mat-label>
+      <textarea matInput type="string" name="message" #message="ngModel" ngModel></textarea>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Send</button>
+  </form>
+</mat-card>
