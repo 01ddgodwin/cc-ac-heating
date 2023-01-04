@@ -1,4 +1,4 @@
-<nav *ngIf="router.url === '/'">
+<nav *ngIf="router.url === '/'" class="homeNavContainer">
     <ul>
         <li class="homeNav">
             <img src="../../assets/CC Logo.png" alt="CC AC and Heating logo">
@@ -17,13 +17,13 @@
                 <a routerLink="/customers">CUSTOMERS</a>
             </li>
             <li routerLink="/parts" *ngIf="userIsAuthenticated">
-                <a href="/parts">PARTS</a>
+                <a routerLink="/parts">PARTS</a>
             </li>
             <li *ngIf="!userIsAuthenticated">
                 <a routerLink="/login" routerLinkActive="mat-accent">LOGIN</a>
             </li>
             <li *ngIf="userIsAuthenticated">
-                <button mat-button (click)="onLogout()">LOGOUT</button>
+                <a mat-button (click)="onLogout()">LOGOUT</a>
             </li>
         </ul>
     </nav>

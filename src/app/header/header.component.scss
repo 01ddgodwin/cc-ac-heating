@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-nav:nth-child(1) {
+.homeNavContainer {
     background-color: white;
 
     ul {
@@ -29,6 +29,10 @@ nav:nth-child(1) {
         font-weight: 700;
         font-size: 50px;
     }
+}
+
+.headerNav {
+    height: 10em;
 }
 
 ul {

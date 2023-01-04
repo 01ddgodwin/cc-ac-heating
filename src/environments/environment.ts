@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  apiURL: "http://localhost:3000/api"
-  // apiURL: "http://ccacheating.s3-website-us-west-2.amazonaws.com/api"
+  // apiURL: "http://localhost:3000/api"
+  apiURL: "http://ccacheating-env.eba-dgqp2vqd.us-east-1.elasticbeanstalk.com/api"
 };
 
 /*

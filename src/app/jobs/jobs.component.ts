@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Job } from './jobs.model';
 
 @Component({
-  selector: 'app-customers',
+  selector: 'app-jobs',
   templateUrl: './jobs.component.html',
   //   styleUrls: ['./jobs.component.scss']
 })
