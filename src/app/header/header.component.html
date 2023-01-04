@@ -7,9 +7,12 @@
     </ul>
 </nav>
 
-<mat-toolbar color="primary" *ngIf="router.url != '/'">
-    <nav class="headerNav">
+<mat-toolbar class="headerNav" color="primary" *ngIf="router.url != '/'">
+    <nav>
         <ul>
+            <li>
+                <a routerLink="/">HOMEPAGE</a>
+            </li>
             <li routerLink="/jobs" *ngIf="userIsAuthenticated">
                 <a routerLink="/jobs">JOBS</a>
             </li>
@@ -23,7 +26,7 @@
                 <a routerLink="/login" routerLinkActive="mat-accent">LOGIN</a>
             </li>
             <li *ngIf="userIsAuthenticated">
-                <a mat-button (click)="onLogout()">LOGOUT</a>
+                <a (click)="onLogout()">LOGOUT</a>
             </li>
         </ul>
     </nav>

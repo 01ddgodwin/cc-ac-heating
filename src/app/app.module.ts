@@ -30,6 +30,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HomeComponent } from './home/home.component'
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { HomeComponent } from './home/home.component'
     MatNativeDateModule,
     MatProgressSpinnerModule
   ],
-  providers: [MatDatepickerModule, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [MatDatepickerModule, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

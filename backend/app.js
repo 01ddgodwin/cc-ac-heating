@@ -12,6 +12,8 @@ const Part = require("./models/part")
 
 const app = express();
 
+mongoose.set('strictQuery', true);
+
 mongoose
   .connect(
     "mongodb+srv://admin:" + process.env.MONGO_ATLAS_PW + "@ccacheating.pmwelpi.mongodb.net/"

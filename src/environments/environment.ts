@@ -5,7 +5,7 @@
 export const environment = {
   production: true,
   // apiURL: "http://localhost:3000/api"
-  apiURL: "http://ccacheating-env.eba-dgqp2vqd.us-east-1.elasticbeanstalk.com/api"
+  apiURL: "https://cc-ac-heating-server.onrender.com/api"
 };
 
 /*
