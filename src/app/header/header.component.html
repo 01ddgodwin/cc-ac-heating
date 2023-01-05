@@ -22,6 +22,9 @@
             <li routerLink="/parts" *ngIf="userIsAuthenticated">
                 <a routerLink="/parts">PARTS</a>
             </li>
+            <li routerLink="/messages" *ngIf="userIsAuthenticated">
+                <a routerLink="/messages">MESSAGES</a>
+            </li>
             <li *ngIf="!userIsAuthenticated">
                 <a routerLink="/login" routerLinkActive="mat-accent">LOGIN</a>
             </li>

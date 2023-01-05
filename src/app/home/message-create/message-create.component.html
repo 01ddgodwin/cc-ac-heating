@@ -1,0 +1,23 @@
+<mat-card class="contactCard">
+    <form (submit)="onSaveMessage(messageForm)" [action]="url" method="POST" #messageForm="ngForm">
+      <mat-card-header>
+        <mat-card-title class="cardTitle">Send Us A Message</mat-card-title>
+      </mat-card-header>
+      <mat-form-field>
+        <input matInput type="string" name="name" #name="ngModel" ngModel placeholder="Full Name" required>
+        <mat-error *ngIf="name.invalid">Full Name is Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="string" name="phone" #phone="ngModel" ngModel placeholder="Phone #" required>
+        <mat-error *ngIf="name.invalid">Phone # is Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="string" name="email" #email="ngModel" ngModel placeholder="Email">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Message</mat-label>
+        <textarea matInput type="string" name="message" #message="ngModel" ngModel></textarea>
+      </mat-form-field>
+      <button mat-raised-button type="submit">Send</button>
+    </form>
+  </mat-card>

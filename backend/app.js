@@ -7,16 +7,19 @@ const jobsRoutes = require("./routes/jobs");
 const userRoutes = require("./routes/user");
 
 const Job = require("./models/job");
-const Customer = require("./models/customer")
-const Part = require("./models/part")
+const Customer = require("./models/customer");
+const Part = require("./models/part");
+const Message = require("./models/message");
 
 const app = express();
 
-mongoose.set('strictQuery', true);
+mongoose.set("strictQuery", true);
 
 mongoose
   .connect(
-    "mongodb+srv://admin:" + process.env.MONGO_ATLAS_PW + "@ccacheating.pmwelpi.mongodb.net/"
+    "mongodb+srv://admin:" +
+      process.env.MONGO_ATLAS_PW +
+      "@ccacheating.pmwelpi.mongodb.net/"
   )
   .then(() => {
     console.log("Connected to database!");
@@ -26,7 +29,7 @@ mongoose
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -44,18 +47,13 @@ app.use((req, res, next) => {
 app.use("/api/jobs", jobsRoutes);
 app.use("/api/user", userRoutes);
 
-
 ///////////////////////////////////////////////
 // JOBS
 ///////////////////////////////////////////////
 
-
-
-
 ///////////////////////////////////////////////
 // CUSTOMERS
 ///////////////////////////////////////////////
-
 
 // Create a Cutomers
 app.post("/api/customers", (req, res, next) => {
@@ -64,12 +62,12 @@ app.post("/api/customers", (req, res, next) => {
     lastName: req.body.lastName,
     phone: req.body.phone,
     email: req.body.email,
-    address: req.body.address
+    address: req.body.address,
   });
-  customer.save().then(createdCustomer => {
+  customer.save().then((createdCustomer) => {
     res.status(201).json({
       message: "Customer added successfully!",
-      customerId: createdCustomer._id
+      customerId: createdCustomer._id,
     });
   });
 });
@@ -82,13 +80,13 @@ app.put("/api/customers/:id", (req, res, next) => {
     lastName: req.body.lastName,
     phone: req.body.phone,
     email: req.body.email,
-    address: req.body.address
-  })
-  Customer.updateOne({_id: req.params.id}, customer).then(result => {
+    address: req.body.address,
+  });
+  Customer.updateOne({ _id: req.params.id }, customer).then((result) => {
     console.log(result);
-    res.status(200).json({message: "Update successful!"});
-  })
-})
+    res.status(200).json({ message: "Update successful!" });
+  });
+});
 
 // Get all customers
 app.get("/api/customers", (req, res, next) => {
@@ -102,12 +100,11 @@ app.get("/api/customers", (req, res, next) => {
 
 // Delete customer by id
 app.delete("/api/customers/:id", (req, res, next) => {
-  Customer.deleteOne({ _id: req.params.id }).then(result => {
+  Customer.deleteOne({ _id: req.params.id }).then((result) => {
     console.log(result);
     res.status(200).json({ message: "Customer deleted!" });
   });
 });
-
 
 ///////////////////////////////////////////////
 // PARTS
@@ -119,10 +116,10 @@ app.post("/api/parts", (req, res, next) => {
     partName: req.body.partName,
     cost: req.body.cost,
   });
-  part.save().then(createdPart => {
+  part.save().then((createdPart) => {
     res.status(201).json({
       message: "Part added successfully!",
-      partId: createdPart._id
+      partId: createdPart._id,
     });
   });
 });
@@ -132,13 +129,13 @@ app.put("/api/parts/:id", (req, res, next) => {
   const part = new Part({
     _id: req.body.id,
     partName: req.body.partName,
-    cost: req.body.cost
-  })
-  Part.updateOne({_id: req.params.id}, part).then(result => {
+    cost: req.body.cost,
+  });
+  Part.updateOne({ _id: req.params.id }, part).then((result) => {
     console.log(result);
-    res.status(200).json({message: "Update successful!"});
-  })
-})
+    res.status(200).json({ message: "Update successful!" });
+  });
+});
 
 // Get all parts
 app.get("/api/parts", (req, res, next) => {
@@ -152,10 +149,48 @@ app.get("/api/parts", (req, res, next) => {
 
 // Delete part by id
 app.delete("/api/parts/:id", (req, res, next) => {
-  console.log(req.params.id)
-  Part.deleteOne({_id: req.params.id}).then(result => {
+  console.log(req.params.id);
+  Part.deleteOne({ _id: req.params.id }).then((result) => {
     console.log(result);
     res.status(200).json({ message: "Part deleted!" });
+  });
+});
+
+///////////////////////////////////////////////
+// MESSAGES
+///////////////////////////////////////////////
+
+// Create a Message
+app.post("/api/messages", (req, res, next) => {
+  const message = new Message({
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
+    message: req.body.message,
+  });
+  message.save().then((createdMessage) => {
+    res.status(201).json({
+      message: "Message added successfully!",
+      messageId: createdMessage._id,
+    });
+  });
+});
+
+// Get all Messages
+app.get("/api/messages", (req, res, next) => {
+  Message.find().then((documents) => {
+    res.status(200).json({
+      message: "Messages fetched successfully!",
+      messages: documents,
+    });
+  });
+});
+
+// Delete Message by Id
+app.delete("/api/messages/:id", (req, res, next) => {
+  Message.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+    res.status(200).json({ message: "Message deleted!" });
   });
 });
 

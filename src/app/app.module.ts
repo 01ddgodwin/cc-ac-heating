@@ -31,6 +31,9 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HomeComponent } from './home/home.component'
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MessageCreateComponent } from './home/message-create/message-create.component';
+import { MessagesComponent } from './messages/messages.component';
+import { MessagesListComponent } from './messages/messages-list/messages-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LoginComponent,
     SignupComponent,
     HomeComponent,
+    MessageCreateComponent,
+    MessagesComponent,
+    MessagesListComponent,
   ],
   imports: [
     BrowserModule,

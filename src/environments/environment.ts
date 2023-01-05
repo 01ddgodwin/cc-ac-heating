@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  // apiURL: "http://localhost:3000/api"
-  apiURL: "https://cc-ac-heating-server.onrender.com/api"
+  apiURL: "http://localhost:3000/api"
+  // apiURL: "https://cc-ac-heating-server.onrender.com/api"
 };
 
 /*

@@ -4,14 +4,14 @@
     <h1>It's Getting Hot In Here</h1>
   </div>
   <div class="heatCard">
-    <h3></h3>
+    <h3>Whether you need a new heater, repairs, or basic maintenance, we'll be there. </h3>
   </div>
 </div>
 
 <div class="aboutSection">
   <div class="aboutText">
     <h2>Who We Are</h2>
-    <p>Father and son duo based in Glasgow Montana servicing NorthEastern Montana. With years of experience, we are here
+    <p>Father and son duo, Chuck and Cody, based in Glasgow servicing NorthEastern Montana. With years of experience, we are here
       to give you the best HVAC service around.</p>
   </div>
   <div class="supplier">
@@ -22,7 +22,7 @@
 
 <div class="acSection">
     <div class="acCard">
-        
+        <h3>Keep cool with our Air Conditioning services. We'll install and repair anything you need.</h3>
     </div>
     <div class="acCard">
       <img src="../../assets/air-conditioner-svgrepo-com.svg" alt="Image of an AC unit">
@@ -30,27 +30,4 @@
     </div>
 </div>
 
-<mat-card class="contactCard">
-  <form #jobForm="ngForm">
-    <mat-card-header>
-      <mat-card-title class="cardTitle">Send Us A Message</mat-card-title>
-    </mat-card-header>
-    <mat-form-field>
-      <input matInput type="string" name="name" #name="ngModel" ngModel placeholder="Full Name">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="string" name="email" #email="ngModel" ngModel placeholder="Email">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="string" name="phone" #phone="ngModel" ngModel placeholder="Phone #">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Message</mat-label>
-      <textarea matInput type="string" name="message" #message="ngModel" ngModel></textarea>
-    </mat-form-field>
-    <button mat-raised-button type="submit">Send</button>
-  </form>
-</mat-card>
-
-<a routerLink="/login">LOGIN</a>
-<a routerLink="/signup">SIGNUP</a>
+<app-message-create></app-message-create>

@@ -11,6 +11,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { PartCreateComponent } from './parts/part-create/part-create.component';
 import { CustomerCreateComponent } from './customers/customer-create/customer-create.component';
 import { HomeComponent } from './home/home.component';
+import { MessageCreateComponent } from './home/message-create/message-create.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -20,8 +22,9 @@ const routes: Routes = [
   { path: 'editJob/:jobId', component: JobCreateComponent, canActivate: [AuthGuard] },
   { path: 'parts', component: PartsComponent, canActivate: [AuthGuard]},
   { path: 'editPart/:partId', component: PartCreateComponent, canActivate: [AuthGuard] },
+  { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},
-  { path: 'signup', component: SignupComponent }
+  // { path: 'signup', component: SignupComponent }
 ];
 
 @NgModule({

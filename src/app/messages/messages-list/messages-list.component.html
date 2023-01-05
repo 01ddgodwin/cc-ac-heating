@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion *ngIf="messages.length > 0 && !isLoading" class="backendMargin">
+    <mat-expansion-panel *ngFor="let message of messages">
+      <mat-expansion-panel-header>
+        {{ message.name }}
+      </mat-expansion-panel-header>
+      <p>Phone #: {{ message.phone }}</p>
+      <p *ngIf="message.email">Email: {{ message.email }}</p>
+      <p *ngIf="message.message">Message: {{ message.message }}</p>
+      <p>Message ID: {{ message.id }}</p>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="onDelete(message.id!)">DELETE</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <p class="infoText mat-body-1" *ngIf="messages.length <= 0 && !isLoading">No Messages Yet!</p>
+  
