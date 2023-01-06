@@ -1,23 +1,26 @@
 <mat-card class="contactCard">
-    <form (submit)="onSaveMessage(messageForm, $event)" #messageForm="ngForm">
-      <mat-card-header>
-        <mat-card-title class="cardTitle">Send Us A Message</mat-card-title>
-      </mat-card-header>
-      <mat-form-field>
-        <input matInput type="string" name="name" #name="ngModel" ngModel placeholder="Full Name" required>
-        <mat-error *ngIf="name.invalid">Full Name is Required</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="string" name="phone" #phone="ngModel" ngModel placeholder="Phone #" required>
-        <mat-error *ngIf="name.invalid">Phone # is Required</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="string" name="email" #email="ngModel" ngModel placeholder="Email">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Message</mat-label>
-        <textarea matInput type="string" name="message" #message="ngModel" ngModel></textarea>
-      </mat-form-field>
-      <button mat-raised-button type="submit">Send</button>
-    </form>
-  </mat-card>
+  <form (submit)="onSaveMessage(messageForm, $event)" #messageForm="ngForm">
+    <mat-card-header>
+      <mat-card-title class="cardTitle">Request a Quote or Send Us a Message</mat-card-title>
+    </mat-card-header>
+    <mat-form-field>
+      <input matInput type="string" name="name" #name="ngModel" ngModel placeholder="Full Name" required>
+      <mat-error *ngIf="name.invalid">Full Name is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="string" name="phone" #phone="ngModel" ngModel placeholder="Phone #" required>
+      <mat-error *ngIf="name.invalid">Phone # is Required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="string" name="email" #email="ngModel" ngModel placeholder="Email">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Message</mat-label>
+      <textarea matInput type="string" name="message" #message="ngModel" ngModel></textarea>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Send</button>
+    <div class="messageSuccess" *ngIf="showSuccess">
+      <h3>Thanks for sending a message! We'll get back to you as soon as possible!</h3>
+    </div>
+  </form>
+</mat-card>

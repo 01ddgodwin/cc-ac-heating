@@ -12,6 +12,8 @@ import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 })
 export class MessageCreateComponent implements OnInit {
 
+  showSuccess: boolean = false
+
   constructor(public homeService: HomeService, public route: ActivatedRoute, public router: Router) { }
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class MessageCreateComponent implements OnInit {
     };
 
     this.homeService.addMessage(message);
+    this.showSuccess = true;
 
     emailjs.sendForm('service_io31crw', 'ccacheating_contact', e.target as HTMLFormElement, 'jOlpvx3rRYl0P0OKg')
       .then((result: EmailJSResponseStatus) => {
