@@ -12,5 +12,16 @@ body {
 }
 
 .backendMargin {
-  margin: 4em 20%;
+  margin: 4em 0;
+}
+
+@media (min-width: 600px) {
+  .backendMargin {
+    margin: 4em 20%;
+  }
+}
+
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: auto;
 }

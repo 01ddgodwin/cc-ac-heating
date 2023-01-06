@@ -1,5 +1,5 @@
 <mat-card class="contactCard">
-    <form (submit)="onSaveMessage(messageForm)" [action]="url" method="POST" #messageForm="ngForm">
+    <form (submit)="onSaveMessage(messageForm, $event)" #messageForm="ngForm">
       <mat-card-header>
         <mat-card-title class="cardTitle">Send Us A Message</mat-card-title>
       </mat-card-header>

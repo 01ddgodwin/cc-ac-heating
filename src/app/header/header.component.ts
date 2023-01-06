@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private authListenerSubs!: Subscription;
 
+  menuToggle = 'closed';
+
   constructor(private authService: AuthService, public router: Router) {}
 
   ngOnInit(): void {
@@ -29,6 +31,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+  }
+
+  toggleMenu() {
+    if (this.menuToggle === 'closed') {
+      this.menuToggle = 'open';
+      console.log("Open")
+    } else if (this.menuToggle === 'open') {
+      this.menuToggle = 'closed'
+      console.log("Closed")
+    }
   }
 
 }

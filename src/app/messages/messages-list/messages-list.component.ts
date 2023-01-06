@@ -19,7 +19,6 @@ export class MessagesListComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.messagesService.getMessages();
-    console.log("Messages got")
     this.messagesSub = this.messagesService
       .getMessageUpdateListener()
       .subscribe((messages: Message[]) => {

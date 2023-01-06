@@ -9,7 +9,17 @@
 
 <mat-toolbar class="headerNav" color="primary" *ngIf="router.url != '/'">
     <nav>
-        <ul>
+        <ul (click)="toggleMenu()" class="menuClosed" *ngIf="menuToggle === 'closed'">
+            <div class="hamburgerLine"></div>
+            <div class="hamburgerLine"></div>
+            <div class="hamburgerLine"></div>
+        </ul>
+        <ul (click)="toggleMenu()" class="menuOpen" *ngIf="menuToggle === 'open'">
+            <div class="hamburgerLine"></div>
+            <div class="hamburgerLine"></div>
+            <div class="hamburgerLine"></div>
+        </ul>
+        <ul *ngIf="menuToggle === 'open'" class="navLinks">
             <li>
                 <a routerLink="/">HOMEPAGE</a>
             </li>

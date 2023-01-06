@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeService } from '../home.service';
 import { Message } from '../messages.model';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-message-create',
@@ -10,14 +11,13 @@ import { Message } from '../messages.model';
   styleUrls: ['./message-create.component.scss']
 })
 export class MessageCreateComponent implements OnInit {
-  url = "https://mailthis.to/coldairforu@gmail.com"
 
   constructor(public homeService: HomeService, public route: ActivatedRoute, public router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSaveMessage(form: NgForm) {
+  onSaveMessage(form: NgForm, e: Event) {
     if (form.invalid) {
       return;
     }
@@ -30,7 +30,24 @@ export class MessageCreateComponent implements OnInit {
     };
 
     this.homeService.addMessage(message);
+
+    emailjs.sendForm('service_io31crw', 'ccacheating_contact', e.target as HTMLFormElement, 'jOlpvx3rRYl0P0OKg')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+
     form.resetForm();
   }
+
+  // public sendEmail(e: Event) {
+  //   emailjs.sendForm('service_io31crw', 'ccacheating_contact', e.target as HTMLFormElement, 'jOlpvx3rRYl0P0OKg')
+  //     .then((result: EmailJSResponseStatus) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
 
 }

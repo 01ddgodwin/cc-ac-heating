@@ -1,127 +1,159 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 .homeNavContainer {
-    background-color: white;
+  background-color: white;
 
-    ul {
-        margin: 0;
-    }
+  ul {
+    margin: 0;
+  }
 
-    li {
-        margin: 0;
-    }
+  li {
+    margin: 0;
+  }
 }
 
 .homeNav {
-    display: flex;
-    align-items: center;
-    height: 10em;
-    margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 10em;
+  margin: 0 auto;
 
-    img {
-        width: 150px;
-    }
+  img {
+    width: 150px;
+  }
 
-    h1 {
-        margin-left: 1em;
-        margin-bottom: 0;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-size: 50px;
-    }
+  h1 {
+    margin-left: 1em;
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+  }
 }
 
-.headerNav {
-    height: 5em;
+.headerNav .nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuClosed {
+
+  .hamburgerLine {
+    width: 2em;
+    height: .3em;
+    background-color: white;
+    margin: .2em;
+    border-radius: 20px;
+  }
+}
+
+.menuOpen {
+
+  :nth-child(1) {
+    transform: rotate(45deg) translateY(.5em);
+  }
+
+  :nth-child(2) {
+    display: none;
+  }
+
+  :nth-child(3) {
+    transform: rotate(-45deg) translateY(-.5em);
+  }
+
+  .hamburgerLine {
+    width: 2em;
+    height: .3em;
+    background-color: white;
+    margin: .2em;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+  }
 }
 
 ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 0;
-    
-    li {
-        margin: 3em;
-    }
 
-    a, button {
-        text-decoration: none;
-        color: white;
-    }
+  .navLinks {
+    height: 10em;
+  }
+
+  height: 100%;
+
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  // li {
+  //     margin: 3em;
+  // }
+
+  a,
+  button {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 mat-toolbar {
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-}
-
-@media screen and (max-width: 600px) {
-    nav {
-        display: flex;
-
-        ul {
-            padding: 0;
-            li {
-                margin: 1em;
-            }
-        }
-    }
-    
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
 
 // Mobile
 @media (min-width: 320px) and (max-width: 480px) {
-    .homeNav {
-        display: flex;
-        align-items: center;
-        height: 6em;
-        margin: 0 auto;
-    
-        img {
-            width: 100px;
-        }
-    
-        h1 {
-            margin-left: 1em;
-            margin-bottom: 0;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-        }
+  .homeNav {
+    display: flex;
+    align-items: center;
+    height: 6em;
+    margin: 0 auto;
+
+    img {
+      width: 100px;
     }
+
+    h1 {
+      margin-left: 1em;
+      margin-bottom: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+
+  .mat-card {
+    margin: 0 !important;
+  }
+
 }
 
 // Tablets
 @media (min-width: 481px) and (max-width: 768px) {
-    .homeNav {
-        display: flex;
-        // align-items: center;
-        height: 6em;
-        margin: 0 auto;
-    
-        img {
-            width: 100px;
-        }
-    
-        h1 {
-            margin-left: 1em;
-            margin-bottom: 0;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-        }
+  .homeNav {
+    display: flex;
+    // align-items: center;
+    height: 6em;
+    margin: 0 auto;
+
+    img {
+      width: 100px;
     }
+
+    h1 {
+      margin-left: 1em;
+      margin-bottom: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
 }
 
 // Small Screens
-@media (min-width: 769px) and (max-width: 1024px) {
-    
-}
+@media (min-width: 769px) and (max-width: 1024px) {}
 
 // Large Screens
-@media (min-width: 1025px) and (max-width: 1200px) {
-    
-}
+@media (min-width: 1025px) and (max-width: 1200px) {}
